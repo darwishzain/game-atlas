@@ -1,4 +1,4 @@
-import json,os
+import json,os,re
 from datetime import datetime
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import (
@@ -9,6 +9,7 @@ from PyQt6.QtWidgets import (
     QLabel,
     QLineEdit,
     QPushButton,
+    QSizePolicy,
     QTableWidget,
     QTableWidgetItem,
     QTextEdit,
@@ -16,71 +17,83 @@ from PyQt6.QtWidgets import (
     QWidget
 )
 from PyQt6.QtGui import QFont, QColor, QBrush
-APP_DIR = os.path.dirname(os.path.abspath(__file__))
 class MOBACodex(QWidget):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("MOBA Codex")
+        self.configfile = os.path.abspath('config.json')
+        self.config = self.openjson(self.configfile)
+        self.setWindowTitle(self.config['name'])
         self.showMaximized()
         self.mainlayout = QVBoxLayout()
+        #self.mainlayout.setContentsMargins(0, 0, 0, 0)  # no outer margins
+        #self.mainlayout.setSpacing(5)
         self.setLayout(self.mainlayout)
-        self.errors = QLabel()
-        self.errors.setAlignment(Qt.AlignmentFlag.AlignTop | Qt.AlignmentFlag.AlignHCenter)
-        self.errors.setStyleSheet("color: red;")
-        self.mainlayout.addWidget(self.errors)
-        self.topui()
-        self.title = QLabel()
-        self.title.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.mainlayout.addWidget(self.title)
-        self.content = QVBoxLayout()
-        self.mainlayout.addLayout(self.content)
+        self.ui()
 
-    def topui(self):
-        openfile = QHBoxLayout()
-        self.mainlayout.addLayout(openfile)
-        self.filelist = QComboBox()
-        self.filelist.addItems(os.listdir('../data/moba'))
-        openfile.addWidget(self.filelist,stretch=1)
-        self.loadbtn = QPushButton(">")
-        self.loadbtn.clicked.connect(self.loadfile)
-        openfile.addWidget(self.loadbtn,stretch=0)
-        openfile.setAlignment(Qt.AlignmentFlag.AlignTop | Qt.AlignmentFlag.AlignHCenter)
+    def openjson(self, filepath):
+        with open(filepath, 'r', encoding='utf-8') as f:
+            jsondata = json.load(f)
+        return jsondata
+
+    def ui(self):
+        menu = QVBoxLayout()
+        self.mainlayout.addLayout(menu)
+
+        self.error = QLineEdit("Error: None")
+        self.error.setReadOnly(True)
+        self.error.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.error.setStyleSheet("color: red;background-color: #101010;")
+        menu.addWidget(self.error)
+
+        selectfile = QHBoxLayout()
+        menu.addLayout(selectfile)
+
+        self.fileselection = QComboBox()
+        self.fileselection.addItems(os.listdir(self.config['settings']['data']))
+        self.fileselection.currentTextChanged.connect(lambda text: self.loadfile())
+        selectfile.addWidget(self.fileselection,stretch=1)
+        #selectfile.addWidget(QLabel("or"),stretch=0)
+        #self.fileinput = QLineEdit()
+        #self.fileinput.setPlaceholderText("Enter path")
+        #selectfile.addWidget(self.fileinput,stretch=2)
+        #self.loadbtn = QPushButton("Load")
+        ##self.loadbtn.clicked.connect(self.loadfile)
+        #selectfile.addWidget(self.loadbtn,stretch=0)
+
         self.options = QHBoxLayout()
         self.mainlayout.addLayout(self.options)
 
+        self.content = QVBoxLayout()
+        self.mainlayout.addLayout(self.content)
+        self.contenttitle("Select a file to load data")
+
+    def contenttitle(self, text):
+        self.content.addWidget(QLabel(text),alignment=Qt.AlignmentFlag.AlignCenter)
+
     def loadfile(self):
-        self.clearcontent(self.content)
-        self.clearcontent(self.options)
-        self.jsonfile = os.path.abspath(os.path.join(APP_DIR, '../data/moba', self.filelist.currentText()))
-        if not os.path.isfile(self.jsonfile):
-            self.errors.setText("Error: File does not exist.")
-            return
-        try:
-            with open(self.jsonfile, 'r', encoding='utf-8') as f:
-                self.data = json.load(f)
-        except Exception as e:
-            self.errors.setText(f"Error loading JSON: {e}")
-            return
+        self.clearlayout(self.content)
+        self.clearlayout(self.options)
+        self.jsonfile = os.path.abspath(os.path.join(self.config['settings']['data'],self.fileselection.currentText()))
+        self.jsondata = self.openjson(self.jsonfile)
+        self.setWindowTitle(self.config['name'] + ": " + self.jsondata.get('title','No Title')+": "+self.jsonfile)
+        self.contenttitle(self.jsondata.get('title','No Title'))
+        self.optionsbtn()
 
-        with open(self.jsonfile, 'r', encoding='utf-8') as f:
-            self.rawdata = f.read()
-        self.setWindowTitle("MOBA Codex: "+self.jsonfile)
-        self.errors.setText("")
-        self.viewbtn = QPushButton("View")
-        self.viewbtn.clicked.connect(self.view)
-        self.options.addWidget(self.viewbtn,stretch=0)
-        self.generalbtn = QPushButton("General")
-        self.generalbtn.clicked.connect(self.general)
-        self.options.addWidget(self.generalbtn,stretch=0)
-        self.heroesbtn = QPushButton("Heroes")
-        self.heroesbtn.clicked.connect(self.addheroes)
-        self.options.addWidget(self.heroesbtn,stretch=0)
-        self.equipmentsbtn = QPushButton("Equipments")
-        self.equipmentsbtn.clicked.connect(self.addequipments)
-        self.options.addWidget(self.equipmentsbtn,stretch=0)
-        self.view()
+    def optionsbtn(self):
+        generalbtn = QPushButton("General")
+        generalbtn.clicked.connect(self.generalsettings)
+        self.options.addWidget(generalbtn)
+        heroesbtn = QPushButton("Heroes")
+        heroesbtn.clicked.connect(self.heroessettings)
+        self.options.addWidget(heroesbtn)
+        equipementbtn = QPushButton("Equipment")
+        equipementbtn.clicked.connect(self.equipementsettings)
+        self.options.addWidget(equipementbtn)
+        settingsbtn = QPushButton("Settings")
+        settingsbtn.clicked.connect(self.applicationsettings)
+        self.options.addWidget(settingsbtn)
 
-    def clearcontent(self, layout):
+    def clearlayout(self, layout):
         while layout.count():
             child = layout.takeAt(0)
             if child.widget():
@@ -92,75 +105,49 @@ class MOBACodex(QWidget):
                     if subchild.widget():
                         subchild.widget().deleteLater()
 
-    def view(self):
-        self.clearcontent(self.content)
-        self.title.setText("View")
-        self.content.addWidget(QLabel(self.data['title']+" ("+self.data['description']+") - "+self.data['updated']))
+    def generalsettings(self):
+        self.clearlayout(self.content)
+        self.contenttitle("General Settings")
 
+    def heroessettings(self):
+        self.clearlayout(self.content)
+        self.contenttitle("Heroes Settings")
+
+    def equipementsettings(self):
+        self.clearlayout(self.content)
+        self.contenttitle("Equipment Settings")
+
+        rows = []
+        attributes = [
+            re.sub(r"[\(\[\{].*?[\)\]\}]", "", attr).strip() for attr in self.jsondata['attributes']
+        ]
+        for eq in self.jsondata['equipments']:
+            row = [eq['name']+" $"+str(eq['cost'])]
+            for attr in attributes:
+                row.append(eq.get("attributes", {}).get(attr, ""))  # empty if missing
+            rows.append(row)
+
+        headers = ["Name"]+[a.replace(" ","\n") for a in self.jsondata['attributes']]
         equipmenttable = QTableWidget()
-        equipmenttable.verticalHeader().setVisible(False)
-        equipmenttable.setColumnCount(len(self.data['attributes'])+1)
-        headers = ["names"]
-        for attr, unit in self.data['attributes'].items():
-            a = attr
-            a = " ".join(word.capitalize() for word in a.split()).replace(" ", "\n")
-            headers.append(a + (f"\n({unit})" if unit else ""))
+        equipmenttable.setRowCount(len(rows))
+        equipmenttable.setColumnCount(len(headers))
         equipmenttable.setHorizontalHeaderLabels(headers)
-        equipmenttable.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
-        # Fill rows
-        for equipment in self.data['equipments']:
-            row = equipmenttable.rowCount()
-            equipmenttable.insertRow(row)
-
-            # First column: equipment name
-            equipmenttable.setItem(row, 0, QTableWidgetItem(equipment['name']+" ("+str(equipment['cost'])+")"))
-
-            # Attribute columns
-            for col, attr in enumerate(self.data['attributes'], start=1):
-                value = equipment.get("attributes", {}).get(attr, "")
-                item = QTableWidgetItem(str(value) if value != "" else "")
-                item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
-                equipmenttable.setItem(row, col, item)
+        equipmenttable.verticalHeader().setVisible(False)
+        for i,row in enumerate(rows):
+            for j,value in enumerate(row):
+                item = QTableWidgetItem(str(value))
+                equipmenttable.setItem(i, j, item)
+        equipmenttable.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeMode.ResizeToContents)
+        for col in range(1, equipmenttable.columnCount()):
+            equipmenttable.horizontalHeader().setSectionResizeMode(col, QHeaderView.ResizeMode.Stretch)
         equipmenttable.resizeRowsToContents()
-
+        equipmenttable.setWordWrap(False)
         self.content.addWidget(equipmenttable)
+    def applicationsettings(self):
+        self.clearlayout(self.content)
+        self.contenttitle("Application Settings")
+        self.content.addWidget(QLabel(f"Version: {self.config.get('version','No Version')}"),alignment=Qt.AlignmentFlag.AlignCenter)
 
-    def addequipments(self):
-        self.clearcontent(self.content)
-        self.title.setText("Equipments")
-        equipmentlayout = QHBoxLayout()
-        self.content.addLayout(equipmentlayout)
-        self.equipmentname = QLineEdit()
-        self.equipmentname.setPlaceholderText("Equipment Name")
-        equipmentlayout.addWidget(self.equipmentname)
-        self.equipmentcost = QLineEdit()
-        self.equipmentcost.setPlaceholderText("Cost")
-        equipmentlayout.addWidget(self.equipmentcost)
-        self.addattributebtn = QPushButton("+ Attribute")
-        self.addattributebtn.clicked.connect(self.addattribute)
-        equipmentlayout.addWidget(self.addattributebtn)
-        savebtn = QPushButton("Save")
-        savebtn.clicked.connect(self.saveequipment)
-        equipmentlayout.addWidget(savebtn)
-        self.attributelayout = QVBoxLayout()
-        self.content.addLayout(self.attributelayout)
-
-    def saveequipment(self):
-        name = self.equipmentname.text().strip()
-        cost = self.equipmentcost.text().strip()
-        
-    def addattribute(self):
-        print("add attribute")
-    def general(self):
-        self.clearcontent(self.content)
-        self.title.setText("General")
-
-    def addheroes(self):
-        self.clearcontent(self.content)
-        self.title.setText("Heroes")
-        self.heroname = QLineEdit()
-        self.heroname.setPlaceholderText("Hero Name")
-        self.content.addWidget(self.heroname)
 if __name__ == "__main__":
     app = QApplication([])
     window = MOBACodex()

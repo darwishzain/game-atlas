@@ -1,7 +1,7 @@
 {
     "title": "Honor of Kings Equipment",
     "description": "A comprehensive list of equipment used in the game Honor of Kings.",
-    "credits": "Informations from Honor of Kings by Tencent Games",
+    "credits": "Informations from Honor of Kings by Tencent Games.",
     "created": "06-09-2025",
     "updated": "06-09-2025",
     "types": [
@@ -12,21 +12,21 @@
         "Jungling",
         "Roaming"
     ],
-    "attributes": {
-        "physical attack": "",
-        "magical attack": "",
-        "physical lifesteal": "%",
-        "max health": "",
-        "max mana": "",
-        "health regen": "/5s",
-        "mana regen": "/5s",
-        "physical defense": "",
-        "magical defense": "",
-        "attack speed": "%",
-        "movement speed": "%",
-        "critical rate": "%",
-        "cooldown reduction": "%"
-    },
+    "attributes": [
+        "physical attack ()",
+        "magical attack ()",
+        "physical lifesteal (%)",
+        "max health ()",
+        "max mana ()",
+        "health regen (/5s)",
+        "mana regen (/5s)",
+        "physical defense ()",
+        "magical defense ()",
+        "attack speed (%)",
+        "movement speed (%)",
+        "critical rate (%)",
+        "cooldown reduction (%)"
+    ],
     "equipments": [
         {
             "name": "Iron Sword",
@@ -1070,7 +1070,5 @@
             }
         }
     ],
-    "heroes":[
-
-    ]
+    "heroes": []
 }

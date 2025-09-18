@@ -1,0 +1,7 @@
+{
+    "name": "MOBA Codex",
+    "version": "0.0.1",
+    "settings": {
+        "data":"../data/moba/"
+    }
+}
