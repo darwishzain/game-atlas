@@ -1,0 +1,294 @@
+{
+    "name":"albiononline",
+    "title":"Albion Online",
+    "buildings":
+    {
+        "stonemason":"Stone Mason",
+        "weaver":"Weaver",
+        "tanner":"Tanner",
+        "smelter":"Smelter",
+        "lumbermill":"Lumber Mill"
+    },
+    "maps":
+    {
+
+    },
+    "resources":
+    {
+        "raw":
+        {
+            "fiber":
+            {
+                "tool":"Sickle",
+                "T2":{"name":"Cotton"},
+                "T3":{"name":"Flax"},
+                "T4":{"name":"Hemp"},
+                "T5":{"name":"Skyflower"},
+                "T6":{"name":"Amberleaf Cotton"},
+                "T7":{"name":"Sunflax"},
+                "T8":{"name":"Ghost Hemp"}
+            },
+            "hide":
+            {
+                "tool":"Skinning Knife",
+                "T1":{"name":"Scraps of Hide"},
+                "T2":{"name":"Rugged Hide"},
+                "T3":{"name":"Thin Hide"},
+                "T4":{"name":"Medium Hide"},
+                "T5":{"name":"Heavy Hide"},
+                "T6":{"name":"Robust Hide"},
+                "T7":{"name":"Thick Hide"},
+                "T8":{"name":"Resilient Hide"}
+            },
+            "log":
+            {
+                "tool":"Wood Axe",
+                "T1":
+                {
+                    "name":"Rough Log",
+                    "img":""
+                },
+                "T2":
+                {
+                    "name":"Birch Log",
+                    "img":""
+            },
+                "T3":
+                {
+                    "name":"Chestnut Log",
+                    "img":""
+            },
+                "T4":
+                {
+                    "name":"Pine Log",
+                    "img":""
+            },
+                "T5":
+                {
+                    "name":"Cedar Log",
+                    "img":""
+            },
+                "T6":
+                {
+                    "name":"Bloodoak Log",
+                    "img":""
+            },
+                "T7":
+                {
+                    "name":"Ashenbark Log",
+                    "img":""
+            },
+                "T8":{
+                    "name":"Whitewood Log",
+                    "img":""
+                }
+            },
+            "stone":
+            {
+                "tool":"Stone Hammer",
+                "T1":
+                {
+                    "name":"Rough Stone",
+                    "img":"https://render.albiononline.com/v1/item/Rough%20Stone.png?locale=en"
+                },
+                "T2":
+                {
+                    "name":"Limestone",
+                    "img":"https://render.albiononline.com/v1/item/Limestone.png?locale=en"
+                },
+                "T3":
+                {
+                    "name":"Sandstone",
+                    "img":"https://render.albiononline.com/v1/item/Sandstone.png?locale=en"
+                },
+                "T4":
+                {
+                    "name":"Travertine",
+                    "img":"https://render.albiononline.com/v1/item/Travertine.png?locale=en"
+                },
+                "T5":
+                {
+                    "name":"Granite",
+                    "img":"https://render.albiononline.com/v1/item/Granite.png?locale=en"
+                },
+                "T6":
+                {
+                    "name":"Slate",
+                    "img":"https://render.albiononline.com/v1/item/Slate.png?locale=en"
+                },
+                "T7":
+                {
+                    "name":"Basalt",
+                    "img":"https://render.albiononline.com/v1/item/Basalt.png?locale=en"
+                },
+                "T8":
+                {
+                    "name":"Marble",
+                    "img":"https://render.albiononline.com/v1/item/Marble.png?locale=en"
+                }
+            },
+            "ore":
+            {
+                "tool":"Pickaxe",
+                "T2":{"name":"Copper Ore"},
+                "T3":{"name":"Tin Ore"},
+                "T4":{"name":"Iron Ore"},
+                "T5":{"name":"Titanium Ore"},
+                "T6":{"name":"Runite Ore"},
+                "T7":{"name":"Meteorite Ore"},
+                "T8":{"name":"Adamantite Ore"}
+            }
+        },
+        "refined":
+        {
+            "brick":
+            {
+                "building":"stonemason",
+                "T2":{
+                    "name":"Limestone Block",
+                    "img":"https://render.albiononline.com/v1/item/Limestone%20Block.png?locale=en",
+                    "resource":"1*raw.stone.T2"
+                },
+                "T3":{
+                    "name":"Sandstone Block",
+                    "img":"https://render.albiononline.com/v1/item/Sandstone%20Block.png?locale=en",
+                    "resource":"2*raw.stone.T3 + 1*refined.stone.T2"
+                },
+                "T4":
+                {
+                    "name":"Travertine Block",
+                    "img":"https://render.albiononline.com/v1/item/Travertine%20Block.png?locale=en",
+                    "resource":
+                    [
+                        "1 = 2*raw.stone.T4 + 1*refined.stone.T3",
+                        "1 = 2*raw.stone.T4.1 + 2*refined.stone.T4",
+                        "1 = 2*raw.stone.T4.2 + 4*refined.stone.T4",
+                        "1 = 2*raw.stone.T4.3 + 8*refined.stone.T4",
+                        "1 = 1*raw.stone.T4 + 1*rockheart + 1*refined.stone.T4"
+                    ]
+                },
+                "T5":{
+                    "name":"Granite Block",
+                    "img":"https://render.albiononline.com/v1/item/Granite%20Block.png?locale=en",
+                    "resource":
+                    [
+                        "1 = 3*raw.stone.T5 + 1*refined.stone.T4",
+                        "2 = 3*raw.stone.T5.1 + 2*refined.stone.T4",
+                        "4 = 3*raw.stone.T5.2 + 4*refined.stone.T4",
+                        "8 = 3*raw.stone.T5.3 + 8*refined.stone.T4",
+                        "1 = 2*raw.stone.T5 + 1*rockheart + 1*refined.stone.T5"
+                    ]
+                },
+                "T6":{
+                    "name":"Slate Block",
+                    "img":"https://render.albiononline.com/v1/item/Slate%20Block.png?locale=en",
+                    "resource":
+                    [
+                        "1 = 4*raw.stone.T6 + 1*refined.stone.T5",
+                        "2 = 4*raw.stone.T6.1 + 2*refined.stone.T5",
+                        "4 = 4*raw.stone.T6.2 + 4*refined.stone.T5",
+                        "8 = 4*raw.stone.T6.3 + 8*refined.stone.T5",
+                        "1 = 3*raw.stone.T6 + 1*rockheart + 1*refined.stone.T6"
+                    ]
+                },
+                "T7":
+                {
+                    "name":"Basalt Block",
+                    "img":"https://render.albiononline.com/v1/item/Basalt%20Block.png?locale=en",
+                    "resource":
+                    [
+                        "1 = 5*raw.stone.T7 + 1*refined.stone.T6",
+                        "2 = 5*raw.stone.T7.1 + 2*refined.stone.T6",
+                        "4 = 5*raw.stone.T7.2 + 4*refined.stone.T6",
+                        "8 = 5*raw.stone.T7.3 + 8*refined.stone.T6",
+                        "1 = 4*raw.stone.T7 + 1*rockheart + 1*refined.stone.T7"
+                    ]
+                },
+                "T8":
+                {
+                    "name":"Marble Block",
+                    "img":"https://render.albiononline.com/v1/item/Marble%20Block.png?locale=en",
+                    "resource":
+                    [
+                        "1 = 5*raw.stone.T8 + 1*refined.stone.T7",
+                        "2 = 5*raw.stone.T8.1 + 2*refined.stone.T7",
+                        "4 = 5*raw.stone.T8.2 + 4*refined.stone.T7",
+                        "8 = 5*raw.stone.T8.3 + 8*refined.stone.T7",
+                        "1 = 4*raw.stone.T8 + 1*rockheart + 1*refined.stone.T8"
+                    ]
+                }
+            },
+            "cloth":
+            {
+                "building":"weaver",
+                "T2":
+                {
+                    "name":"Simple Cloth",
+                    "img":"https://render.albiononline.com/v1/item/Simple%20Cloth.png?locale=en"
+                },
+                "T3":
+                {
+                    "name":"Neat Cloth",
+                    "img":"https://render.albiononline.com/v1/item/Neat%20Cloth.png?locale=en"
+                },
+                "T4":
+                {
+                    "name":"Fine Cloth",
+                    "img":"https://render.albiononline.com/v1/item/Fine%20Cloth.png?locale=en"
+                },
+                "T5":
+                {
+                    "name":"Ornate Cloth",
+                    "img":"https://render.albiononline.com/v1/item/Ornate%20Cloth.png?locale=en"
+                },
+                "T6":
+                {
+                    "name":"Lavish Cloth",
+                    "img":"https://render.albiononline.com/v1/item/Lavish%20Cloth.png?locale=en"
+                },
+                "T7":
+                {
+                    "name":"Opulent Cloth",
+                    "img":"https://render.albiononline.com/v1/item/Opulent%20Cloth.png?locale=en"
+                },
+                "T8":
+                {
+                    "name":"Baroque Cloth",
+                    "img":"https://render.albiononline.com/v1/item/Baroque%20Cloth.png?locale=en"
+                }
+            },
+            "leather":
+            {
+                "building":"tanner",
+                "T2":{"name":"Stiff Leather"},
+                "T3":{"name":"Thick Leather"},
+                "T4":{"name":"Worked Leather"},
+                "T5":{"name":"Cured Leather"},
+                "T6":{"name":"Hardened Leather"},
+                "T7":{"name":"Reinforced Leather"},
+                "T8":{"name":"Fortified Leather"}
+            },
+            "metal":
+            {
+                "building":"smelter",
+                "T2":{"name":"Copper Bar"},
+                "T3":{"name":"Bronze Bar"},
+                "T5":{"name":"Steel Bar"},
+                "T6":{"name":"Titanium Steel Bar"},
+                "T7":{"name":"Runite Steel Bar"},
+                "T8":{"name":"Adamantite Steel Bar"}
+            },
+            "plank":
+            {
+                "building":"lumbermill",
+                "T2":{"name":"Birch Plank"},
+                "T3":{"name":"Chestnut Plank"},
+                "T4":{"name":"Pine Plank"},
+                "T5":{"name":"Cedar Plank"},
+                "T6":{"name":"Bloodoak Plank"},
+                "T7":{"name":"Ashenbark Plank"},
+                "T8":{"name":"Whitewood Plank"}
+            }
+        }
+    }
+}
