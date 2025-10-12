@@ -1,0 +1,9 @@
+{
+    "name": "game-atlas",
+    "title": "Game Atlas",
+    "description": "A comprehensive game database and discovery platform.",
+    "module":{
+        "moba": "modules/moba/",
+        "mmorpg": "modules/mmorpg/"
+    }
+}

@@ -1,0 +1,64 @@
+import json, os
+import modules.mmorpg as mmorpg
+import modules.albiononline as albiononline
+import modules.honorofkings as honorofkings
+from PyQt6.QtCore import Qt
+from PyQt6.QtWidgets import (
+    QApplication,
+    QComboBox,
+    QHeaderView,
+    QHBoxLayout,
+    QLabel,
+    QLineEdit,
+    QMainWindow,
+    QPushButton,
+    QSizePolicy,
+    QTableWidget,
+    QTableWidgetItem,
+    QTextEdit,
+    QVBoxLayout,
+    QWidget
+)
+from PyQt6.QtGui import QFont, QColor, QBrush
+
+class GameAtlas(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.setGeometry(100, 100, 800, 600)
+        self.config = self.openjson('config.json')
+        self.setWindowTitle(self.config['title'])
+
+        albiononline.init()
+        honorofkings.init()
+        self.container = QWidget(self)
+        self.setCentralWidget(self.container)
+        self.layout = QVBoxLayout()
+        self.container.setLayout(self.layout)
+
+        self.header = QHBoxLayout()
+        self.layout.addLayout(self.header)
+
+        games = [['albiononline','MMORPG: Albion Online'], ['honorofkings','MOBA: Honor of Kings']]
+        game = QComboBox()
+        game.addItems(['select game'] + [g[0] for g in games])
+        self.header.addWidget(game)
+        game.currentIndexChanged.connect(lambda: self.selectgame(game.currentText()))
+
+        self.content = QVBoxLayout()
+        self.layout.addLayout(self.content)
+
+    def selectgame(self, game):
+        if game == 'albiononline':
+            albiononline.ui()
+        elif game == 'honorofkings':
+            honorofkings.ui()
+    def openjson(self, filepath):
+        with open(filepath, 'r', encoding='utf-8') as f:
+            jsondata = json.load(f)
+        return jsondata
+
+if __name__ == "__main__":
+    app = QApplication([])
+    window = GameAtlas()
+    window.show()
+    app.exec()
