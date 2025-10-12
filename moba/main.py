@@ -45,6 +45,19 @@ class MOBACodex(QWidget):
         self.error.setStyleSheet("color: red;background-color: #101010;")
         menu.addWidget(self.error)
 
+        settings = QHBoxLayout()
+        menu.addLayout(settings)
+
+        newbtn = QPushButton("New")
+        newbtn.clicked.connect(self.newmobafile)
+        settings.addWidget(newbtn,stretch=0)
+        settingsbtn = QPushButton("Settings")
+        settingsbtn.clicked.connect(self.applicationsettings)
+        settings.addWidget(settingsbtn,stretch=0)
+        refreshbtn = QPushButton("Refresh")
+        #refreshbtn.clicked.connect(lambda: self.loadfile())
+        settings.addWidget(refreshbtn,stretch=0)
+
         selectfile = QHBoxLayout()
         menu.addLayout(selectfile)
 
@@ -63,6 +76,7 @@ class MOBACodex(QWidget):
         self.options = QHBoxLayout()
         self.mainlayout.addLayout(self.options)
 
+
         self.content = QVBoxLayout()
         self.mainlayout.addLayout(self.content)
         self.contenttitle("Select a file to load data")
@@ -80,18 +94,15 @@ class MOBACodex(QWidget):
         self.optionsbtn()
 
     def optionsbtn(self):
-        generalbtn = QPushButton("General")
-        generalbtn.clicked.connect(self.generalsettings)
-        self.options.addWidget(generalbtn)
+        mobabtn = QPushButton("MOBA Settings")
+        mobabtn.clicked.connect(self.mobasettings)
+        self.options.addWidget(mobabtn)
         heroesbtn = QPushButton("Heroes")
         heroesbtn.clicked.connect(self.heroessettings)
         self.options.addWidget(heroesbtn)
         equipementbtn = QPushButton("Equipment")
         equipementbtn.clicked.connect(self.equipementsettings)
         self.options.addWidget(equipementbtn)
-        settingsbtn = QPushButton("Settings")
-        settingsbtn.clicked.connect(self.applicationsettings)
-        self.options.addWidget(settingsbtn)
 
     def clearlayout(self, layout):
         while layout.count():
@@ -105,9 +116,9 @@ class MOBACodex(QWidget):
                     if subchild.widget():
                         subchild.widget().deleteLater()
 
-    def generalsettings(self):
+    def mobasettings(self):
         self.clearlayout(self.content)
-        self.contenttitle("General Settings")
+        self.contenttitle("MOBA Settings")
 
     def heroessettings(self):
         self.clearlayout(self.content)
@@ -143,10 +154,21 @@ class MOBACodex(QWidget):
         equipmenttable.resizeRowsToContents()
         equipmenttable.setWordWrap(False)
         self.content.addWidget(equipmenttable)
+
     def applicationsettings(self):
         self.clearlayout(self.content)
         self.contenttitle("Application Settings")
+        self.content.addWidget(QLabel("Application Name:"))
+        self.appnameinput = QLineEdit(self.config['name'])
+        self.content.addWidget(self.appnameinput,stretch=1)
+        self.content.addWidget(QLabel("Data Folder:"))
+        self.datafolderinput = QLineEdit(self.config['settings']['data'])
+        self.content.addWidget(self.datafolderinput,stretch=1)
         self.content.addWidget(QLabel(f"Version: {self.config.get('version','No Version')}"),alignment=Qt.AlignmentFlag.AlignCenter)
+
+    def newmobafile(self):
+        self.clearlayout(self.content)
+        self.contenttitle("New MOBA Data File")
 
 if __name__ == "__main__":
     app = QApplication([])

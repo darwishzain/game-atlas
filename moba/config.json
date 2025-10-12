@@ -1,7 +1,32 @@
 {
     "name": "MOBA Codex",
     "version": "0.0.1",
+    "author": {
+        "darwishzain":"https://github.com/darwishzain"
+    },
     "settings": {
-        "data":"../data/moba/"
+        "data":"./data/",
+        "new":{
+            "title": "New",
+            "label": "new.json",
+            "description": "Blank JSON for MOBA",
+            "credits": "",
+            "created": "06-09-2025",
+            "updated": "06-09-2025",
+            "types": [
+
+            ],
+            "attributes": [
+
+            ]
+            ,
+            "equipments": [
+
+            ],
+            "heroes":[
+
+            ]
+
+        }
     }
 }
