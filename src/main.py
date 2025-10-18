@@ -51,7 +51,7 @@ class GameAtlas(QMainWindow):
         elif game == 'honorofkings':
             honorofkings.ui()
     def albiononline(self):
-        #albiononline.generate()
+        albiononline.generate()#? to generate albion data(not complete)
         resources = QComboBox()
         for resource in albiononline.data['resources'].values():
             resources.addItem(resource['name'])
