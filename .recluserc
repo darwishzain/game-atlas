@@ -1,0 +1,7 @@
+{
+	"tool":"https://github.com/darwishzain/recluse-board",
+	"name":"game-atlas",
+	"title":"Game Atlas",
+	"language":["python"],
+	"venv":"./venvs"
+}
