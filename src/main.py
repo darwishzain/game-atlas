@@ -28,7 +28,6 @@ class GameAtlas(QMainWindow):
         self.config = self.openjson('config.json')
         self.setWindowTitle(self.config['title'])
 
-        albiononline.init()
         honorofkings.init()
         self.container = QWidget(self)
         self.setCentralWidget(self.container)
@@ -38,9 +37,8 @@ class GameAtlas(QMainWindow):
         self.header = QHBoxLayout()
         self.layout.addLayout(self.header)
 
-        games = [['albiononline','MMORPG: Albion Online'], ['honorofkings','MOBA: Honor of Kings']]
         game = QComboBox()
-        game.addItems(['select game'] + [g[0] for g in games])
+        game.addItems(['select game','albiononline','honorofkings'])
         self.header.addWidget(game)
         game.currentIndexChanged.connect(lambda: self.selectgame(game.currentText()))
 
@@ -49,9 +47,17 @@ class GameAtlas(QMainWindow):
 
     def selectgame(self, game):
         if game == 'albiononline':
-            albiononline.ui()
+            self.albiononline()
         elif game == 'honorofkings':
             honorofkings.ui()
+    def albiononline(self):
+        #albiononline.generate()
+        resources = QComboBox()
+        for resource in albiononline.data['resources'].values():
+            resources.addItem(resource['name'])
+        self.content.addWidget(resources)
+    def honorofkings(self):
+        print("HOK")
     def openjson(self, filepath):
         with open(filepath, 'r', encoding='utf-8') as f:
             jsondata = json.load(f)
