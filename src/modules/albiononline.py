@@ -66,8 +66,8 @@ def generate():
                         img = f"https://render.albiononline.com/v1/item/{img.replace(' ','%20')}.png?locale=en"
                         output['weapons'][type][label] = {
                                 "name":name,
-                                "tier":tier,
-                                "type":type,
+                                "tier":tier+1,
+                                "type":type+' weapon',
                                 "img":img
                             }
                     else:
@@ -79,8 +79,8 @@ def generate():
                                 img = f"https://render.albiononline.com/v1/item/{img.replace(' ','%20')}.png?locale=en"
                                 output['weapons'][type][label] = {
                                     "name":name,
-                                    "tier":t,
-                                    "type":type,
+                                    "tier":t+1,
+                                    "type":type+' weapon',
                                     "img":img
                                 }
     print("albiononline data updated")
