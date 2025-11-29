@@ -1,7 +1,5 @@
 import json, os
 import modules.mmorpg as mmorpg
-import modules.albiononline as albiononline
-import modules.honorofkings as honorofkings
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import (
     QApplication,
@@ -49,13 +47,9 @@ class GameAtlas(QMainWindow):
         if game == 'albiononline':
             self.albiononline()
         elif game == 'honorofkings':
-            honorofkings.ui()
+            self.honorofkings()
     def albiononline(self):
-        albiononline.generate()#? to generate albion data(not complete)
-        resources = QComboBox()
-        for resource in albiononline.data['resources'].values():
-            resources.addItem(resource['name'])
-        self.content.addWidget(resources)
+        print("AO")
     def honorofkings(self):
         print("HOK")
     def openjson(self, filepath):
