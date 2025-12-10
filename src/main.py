@@ -1,5 +1,4 @@
 import json, os
-import modules.mmorpg as mmorpg
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import (
     QApplication,
@@ -26,7 +25,6 @@ class GameAtlas(QMainWindow):
         self.config = self.openjson('config.json')
         self.setWindowTitle(self.config['title'])
 
-        honorofkings.init()
         self.container = QWidget(self)
         self.setCentralWidget(self.container)
         self.layout = QVBoxLayout()

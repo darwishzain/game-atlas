@@ -18,6 +18,70 @@
             "Exceptional",
             "Pristine"
         ],
+        "journal": {
+            "gathering": {
+                "cropper": [
+                    "fibre",
+                    "fibre trophy"
+                ],
+                "gamekeeper": [
+                    "hide",
+                    "hide trophy"
+                ],
+                "lumberjack": [
+                    "log",
+                    "wood trophy"
+                ],
+                "prospector": [
+                    "ore",
+                    "ore trophy"
+                ],
+                "stonecutter": [
+                    "stone",
+                    "stone trophy"
+                ]
+            },
+            "crafting": {
+                "blacksmith": [
+                    "metal bar",
+                    "plank",
+                    "cloth"
+                ],
+                "fletcher": [
+                    "leather",
+                    "metal bar",
+                    "plank"
+                ],
+                "imbuer": [
+                    "cloth",
+                    "plank",
+                    "metal bar"
+                ],
+                "tinker": [
+                    "plank",
+                    "metal bar",
+                    "cloth",
+                    "leather"
+                ]
+            },
+            "slaying": {
+                "mercenary": [
+                    "silver",
+                    "mercenary trophy"
+                ]
+            },
+            "fishing": {
+                "fisherman": [
+                    "fish",
+                    "fishing trophy"
+                ]
+            },
+            "general": {
+                "general": [
+                    "general trophy"
+                ]
+            }
+        },
         "resources": {
             "brick": [
                 "",
@@ -23743,5 +23807,6 @@
                 "img": "https://render.albiononline.com/v1/item/Pristine%20Elder%27s%20Celestial%20Censer.png?locale=en"
             }
         }
-    }
+    },
+    "laborers": {}
 }

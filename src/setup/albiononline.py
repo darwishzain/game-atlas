@@ -91,5 +91,28 @@ for role in setup['weapons']:
     #    print(str(tier+1)+name)
 #* ARMOR
 #! Research
+#*JOURNAL
+output["journals"] = {}
+for type in setup["journal"]:
+    for laborer in setup["journal"][type]:
+        if type == "gathering":
+            output["journals"][laborer.upper()+" JOURNAL"] = {
+                "laborer":laborer.capitalize()+" Laborer",
+                "type":type,
+                "yield":setup["journal"][type][laborer][0]
+            }
+            output["journals"][laborer.upper()+" TROPHY JOURNAL"] = {
+                "laborer":laborer.capitalize()+" Laborer",
+                "type":"trophy",
+                "yield":setup["journal"][type][laborer][1]
+            }
+        elif type == "crafting":
+            output["journals"][laborer.upper()+" CRAFTING JOURNAL"] = {
+                "laborer":laborer.capitalize()+" Laborer",
+                "type":type,
+                "yield":setup["journal"][type][laborer]
+            }
+
+        #name = laborer[0]
 with open(source, 'w', encoding='utf-8') as outfile:
     json.dump(output, outfile, ensure_ascii=False, indent=4)

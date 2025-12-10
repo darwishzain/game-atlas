@@ -18,6 +18,70 @@
             "Exceptional",
             "Pristine"
         ],
+        "journal": {
+            "gathering": {
+                "cropper": [
+                    "fibre",
+                    "fibre trophy"
+                ],
+                "gamekeeper": [
+                    "hide",
+                    "hide trophy"
+                ],
+                "lumberjack": [
+                    "log",
+                    "wood trophy"
+                ],
+                "prospector": [
+                    "ore",
+                    "ore trophy"
+                ],
+                "stonecutter": [
+                    "stone",
+                    "stone trophy"
+                ]
+            },
+            "crafting": {
+                "blacksmith": [
+                    "metal bar",
+                    "plank",
+                    "cloth"
+                ],
+                "fletcher": [
+                    "leather",
+                    "metal bar",
+                    "plank"
+                ],
+                "imbuer": [
+                    "cloth",
+                    "plank",
+                    "metal bar"
+                ],
+                "tinker": [
+                    "plank",
+                    "metal bar",
+                    "cloth",
+                    "leather"
+                ]
+            },
+            "slaying": {
+                "mercenary": [
+                    "silver",
+                    "mercenary trophy"
+                ]
+            },
+            "fishing": {
+                "fisherman": [
+                    "fish",
+                    "fishing trophy"
+                ]
+            },
+            "general": {
+                "general": [
+                    "general trophy"
+                ]
+            }
+        },
         "resources": {
             "brick": [
                 "",
@@ -23742,6 +23806,95 @@
                 "type": "mage weapon",
                 "img": "https://render.albiononline.com/v1/item/Pristine%20Elder%27s%20Celestial%20Censer.png?locale=en"
             }
+        }
+    },
+    "journals": {
+        "CROPPER JOURNAL": {
+            "laborer": "Cropper Laborer",
+            "type": "gathering",
+            "yield": "fibre"
+        },
+        "CROPPER TROPHY JOURNAL": {
+            "laborer": "Cropper Laborer",
+            "type": "trophy",
+            "yield": "fibre trophy"
+        },
+        "GAMEKEEPER JOURNAL": {
+            "laborer": "Gamekeeper Laborer",
+            "type": "gathering",
+            "yield": "hide"
+        },
+        "GAMEKEEPER TROPHY JOURNAL": {
+            "laborer": "Gamekeeper Laborer",
+            "type": "trophy",
+            "yield": "hide trophy"
+        },
+        "LUMBERJACK JOURNAL": {
+            "laborer": "Lumberjack Laborer",
+            "type": "gathering",
+            "yield": "log"
+        },
+        "LUMBERJACK TROPHY JOURNAL": {
+            "laborer": "Lumberjack Laborer",
+            "type": "trophy",
+            "yield": "wood trophy"
+        },
+        "PROSPECTOR JOURNAL": {
+            "laborer": "Prospector Laborer",
+            "type": "gathering",
+            "yield": "ore"
+        },
+        "PROSPECTOR TROPHY JOURNAL": {
+            "laborer": "Prospector Laborer",
+            "type": "trophy",
+            "yield": "ore trophy"
+        },
+        "STONECUTTER JOURNAL": {
+            "laborer": "Stonecutter Laborer",
+            "type": "gathering",
+            "yield": "stone"
+        },
+        "STONECUTTER TROPHY JOURNAL": {
+            "laborer": "Stonecutter Laborer",
+            "type": "trophy",
+            "yield": "stone trophy"
+        },
+        "BLACKSMITH CRAFTING JOURNAL": {
+            "laborer": "Blacksmith Laborer",
+            "type": "crafting",
+            "yield": [
+                "metal bar",
+                "plank",
+                "cloth"
+            ]
+        },
+        "FLETCHER CRAFTING JOURNAL": {
+            "laborer": "Fletcher Laborer",
+            "type": "crafting",
+            "yield": [
+                "leather",
+                "metal bar",
+                "plank"
+            ]
+        },
+        "IMBUER CRAFTING JOURNAL": {
+            "laborer": "Imbuer Laborer",
+            "type": "crafting",
+            "yield": [
+                "cloth",
+                "plank",
+                "metal bar"
+            ]
+        },
+        "TINKER CRAFTING JOURNAL": {
+            "laborer": "Tinker Laborer",
+            "type": "crafting",
+            "yield": [
+                "plank",
+                "metal bar",
+                "cloth",
+                "leather"
+            ]
         }
     }
 }
