@@ -1,5 +1,6 @@
 {
 	"title":"Game Atlas",
+	"label":"GAtlas",
 	"name":"game-atlas",
 	"run":{
 		"code":"code ~/Projects/game-atlas"
