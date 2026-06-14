@@ -18,6 +18,39 @@
             "Exceptional",
             "Pristine"
         ],
+        "stats":{
+            "head":[
+                {"name":"max health"},
+                {"name":"max energy"},
+                {"name":"health regeneration", "unit":"/s"},
+                {"name":"energy regeneration", "unit":"/s"},
+            ],
+            "armor":[
+                {"name":"armor"},
+                {"name":"magical resistance"},
+                {"name":"max health"},
+                {"name":"max energy"},
+                {"name":"crowd control resistance"},
+                {"name":"physical attack bonus"},
+                {"name":"magic attack bonus"},
+                {"name":"physical ability bonus"},
+                {"name":"magical attack bonus"},
+                {"name":"health regeneration", "unit":"/s"},
+                {"name":"health regeneration bonus", "unit":"%"},
+                {"name":"energy regeneration", "unit":"/s"},
+                {"name":"energy regeneration bonus", "unit":"%"},
+                {"name":"healing cast bonus","unit":"%"},
+                {"name":"cc duration vs players","unit":"%"},
+                {"name":"cc duration vs mobs","unit":"%"}
+                
+            ],
+            "shoes":[
+                {"name":"max health"},
+                {"name":"max energy"},
+                {"name":"health regeneration", "unit":"/s"},
+                {"name":"energy regeneration", "unit":"/s"},
+            ]
+        },
         "journal": {
             "gathering": {
                 "cropper": [
